@@ -65,11 +65,15 @@ contract smartLibrary
     /*
     *@notice shares item in library
     */
-    function share(address _to, uint256 _ID) public returns(string memory)
+    function share(address[] memory _to, uint256 _ID) public returns(string memory)
     {
-        require(_to != address(0),"you cant share to zero address");
         content memory c = userLib[msg.sender][_ID];
-        userLib[_to][_ID] = content(c.name, c.Link, c.description);
+        
+        for(uint256 i=0; i<_to.length; i++) {
+        require(_to[i] != address(0),"you cant share to zero address");
+        
+        userLib[_to[i]][_ID] = content(c.name, c.Link, c.description);
+        }
         return "shared";
 
     }
