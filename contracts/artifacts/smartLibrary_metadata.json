@@ -6,6 +6,31 @@
 	"output": {
 		"abi": [
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_description",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_Link",
+						"type": "string"
+					}
+				],
+				"name": "PublicUpload",
+				"type": "event"
+			},
+			{
 				"inputs": [],
 				"name": "count",
 				"outputs": [
@@ -45,35 +70,6 @@
 					}
 				],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "publicLib",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "Link",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -194,11 +190,11 @@
 	},
 	"sources": {
 		"contracts/Library.sol": {
-			"keccak256": "0x0822be5d66f7e5b481e7cdbde77f7361d08cd7a87bc39a33abe3a4ce76c2946d",
+			"keccak256": "0x9a0c94fad796d501f516fe8abbd8efaecd471667c6931e54b3fc1ccf737e3e99",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://62efe2d87a583333a4a939e7104154fe1db4ae20e520ab7494bf13d8154979bf",
-				"dweb:/ipfs/QmeMSieMmrUw7uyQd1ujfgXjYs4s4Ew59jrRXovKbNokZw"
+				"bzz-raw://d1ec339eef04d27c56740cb4d9f3c26f2eda3f2b7fc335b367b271633f63c59d",
+				"dweb:/ipfs/QmcE16599PihSa34hDD64bEJ9TAEGFDYq3Qc3kgktnuVv3"
 			]
 		}
 	},

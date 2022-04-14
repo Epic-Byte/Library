@@ -25,9 +25,14 @@ contract smartLibrary
     mapping (address=>mapping(uint256=>content)) userLib;
 
     /*
+    @notice Events to log public library
+    */
+    event PublicUpload(string indexed _name, string _description, string _Link);
+
+    /*
     *@notice array of public library items
     */
-    content[] public publicLib;
+    content[]private publicLib;
 
     /*
     *@notice uploads privately to users library
@@ -46,6 +51,7 @@ contract smartLibrary
     {
         content memory Content = content(_name,_description,_Link);
         publicLib.push(Content);
+        emit PublicUpload(_name, _description, _Link);
          return ("Added to Public Library");
     }
 
