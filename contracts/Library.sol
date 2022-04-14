@@ -27,7 +27,7 @@ contract smartLibrary
     /*
     @notice Events to log public library
     */
-    event PublicUpload(string indexed _name, string _description, string _Link);
+    event PublicUpload(string indexed _name, string _Link, string _description);
 
     /*
     *@notice array of public library items
@@ -40,7 +40,7 @@ contract smartLibrary
     function privateUpload(string memory _name, string memory _description, string memory _Link)public returns(string memory)
     {
         count++;
-        userLib[msg.sender][count]=content(_name,_description,_Link);
+        userLib[msg.sender][count]=content(_name, _Link, _description);
         return ("Added to Private Library");
     }
 
@@ -49,9 +49,9 @@ contract smartLibrary
     */
     function publicUpload(string memory _name, string memory _description, string memory _Link)public returns(string memory)
     {
-        content memory Content = content(_name,_description,_Link);
+        content memory Content = content(_name, _Link, _description);
         publicLib.push(Content);
-        emit PublicUpload(_name, _description, _Link);
+        emit PublicUpload(_name, _Link, _description);
          return ("Added to Public Library");
     }
 
@@ -61,8 +61,8 @@ contract smartLibrary
     */
     function share(address _to,uint256 _ID)public returns(string memory)
     {
+        require(_to != address(0),"you cant share to zero address");
         content memory c = userLib[msg.sender][_ID];
-        //userLib[_to][_ID] = userLib[msg.sender][_ID] ;
         userLib[_to][_ID] = content(c.name, c.Link, c.description);
         return "shared";
 
