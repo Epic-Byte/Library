@@ -31,6 +31,35 @@
 				"type": "event"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_Link",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_description",
+						"type": "string"
+					}
+				],
+				"name": "PrivateUpload",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "count",
 				"outputs": [
@@ -52,41 +81,12 @@
 					},
 					{
 						"internalType": "string",
-						"name": "_description",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
 						"name": "_Link",
-						"type": "string"
-					}
-				],
-				"name": "privateUpload",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_name",
 						"type": "string"
 					},
 					{
 						"internalType": "string",
 						"name": "_description",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_Link",
 						"type": "string"
 					}
 				],
@@ -104,9 +104,9 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
+						"internalType": "address[]",
 						"name": "_to",
-						"type": "address"
+						"type": "address[]"
 					},
 					{
 						"internalType": "uint256",
@@ -126,14 +126,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_ID",
-						"type": "uint256"
-					}
-				],
-				"name": "viewLib",
+				"inputs": [],
+				"name": "viewPrivateLib",
 				"outputs": [
 					{
 						"components": [
@@ -153,9 +147,9 @@
 								"type": "string"
 							}
 						],
-						"internalType": "struct smartLibrary.content",
+						"internalType": "struct smartLibrary.content[]",
 						"name": "",
-						"type": "tuple"
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "view",
@@ -168,6 +162,11 @@
 			"version": 1
 		},
 		"userdoc": {
+			"events": {
+				"PublicUpload(string,string,string)": {
+					"notice": "Events to log public library"
+				}
+			},
 			"kind": "user",
 			"methods": {},
 			"version": 1
@@ -190,11 +189,11 @@
 	},
 	"sources": {
 		"contracts/Library.sol": {
-			"keccak256": "0xac558a219ab3c09ac95dd68e10bde6d0312390dab6acb889eb0ecdf057ed9786",
+			"keccak256": "0x18c9e1ff98cd1463209b102238b1d9dab4753c2a0c916a981a8c78e3bdcaafb5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0068ef2ef30112a4d629f9a3eb2edc83cc97685b8ddf0f8a0b73710beda1564e",
-				"dweb:/ipfs/QmT8Dn6jVEUhxoGYHE6jWgKU9wkwfTKYxsyTb3vsf46CPg"
+				"bzz-raw://dae16488dc40da3fab48a445ea3ed620109d40ef2aff29b9a95e4088a063df67",
+				"dweb:/ipfs/QmQwnBawcunnMRdBmggbM7juN6Lu4ZuRi15M98ZQL6Rx4d"
 			]
 		}
 	},

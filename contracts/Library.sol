@@ -23,16 +23,13 @@ contract smartLibrary
     *@notice maps user to their library
     */
     mapping (address=>mapping(uint256=>content)) userLib;
+    mapping (address=>content[])privlib;
 
-    /*
+    /**
     @notice Events to log public library
     */
     event PublicUpload(string indexed _name, string _Link, string _description);
     
-    /*
-    @notice Events to log private library
-    */
-    // event PrivateUpload(string indexed _name, string _Link, string _desciption);
 
     /*
     *@notice array of public library items
@@ -46,7 +43,7 @@ contract smartLibrary
     {
         count++;
         userLib[msg.sender][count]=content(_name, _Link, _description);
-      //  emit PrivateUpload(_name, _Link, _description);
+        privlib[msg.sender].push(content(_name, _Link,_description));
         return ("Added to Private Library");
     }
 
@@ -80,10 +77,16 @@ contract smartLibrary
 
 
     /*
-    *@notice view Library item
+    *@notice view Library items
     */
-    function viewLib(uint256 _ID) public view returns(content memory)
+    function viewPrivateLib() public view returns(content[] memory )
     {
-    return userLib[msg.sender][_ID];
+        return privlib[msg.sender];
+    // for(uint i=0; i<privlib[msg.sender].length; i++ )
+    // {
+         
+        // p.push( privlib[msg.sender][i]);
+        
+   //  }
     }
 }
