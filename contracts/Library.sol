@@ -9,6 +9,7 @@ contract smartLibrary
     */
     struct content
     {
+        uint256 ID;
         string name;
         string Link;
         string description;
@@ -18,6 +19,7 @@ contract smartLibrary
     *@notice Id counter 
     */
     uint256 public count = 0;
+    uint256 public Pcount = 0;
 
     /*
     *@notice maps user to their library
@@ -28,39 +30,49 @@ contract smartLibrary
     /**
     @notice Events to log public library
     */
-    event PublicUpload(string indexed _name, string _Link, string _description);
+    event PublicUpload(uint256 _pcount, string indexed _name, string _Link, string _description);
     
 
     /*
     *@notice array of public library items
     */
-    content[] private publicLib;
+    content[] public publicLib;
 
     /*
     *@notice uploads privately to users library
+     @param _name file name
+    @param _Link IPFS Link
+    @param _description file description
     */
-    function PrivateUpload(string memory _name, string memory _Link, string memory _description) public returns(string memory)
+    function PrivateUpload(string memory _name, string memory _Link, string memory _description) public
     {
         count++;
-        userLib[msg.sender][count]=content(_name, _Link, _description);
-        privlib[msg.sender].push(content(_name, _Link,_description));
-        return ("Added to Private Library");
+        uint256 Count = count;
+        userLib[msg.sender][count]=content(Count,_name, _Link, _description);
+        privlib[msg.sender].push(content(Count,_name, _Link,_description));
     }
 
-    /*
-    *@notice Uploads publicly into array publicLib
+    /**
+    @notice Uploads publicly into array publicLib
+    @param _name file name
+    @param _Link IPFS Link
+    @param _description file description
     */
     function publicUpload(string memory _name, string memory _Link, string memory _description) public returns(string memory)
     {
-        content memory Content = content(_name, _Link, _description);
+        Pcount++;
+        uint256 pcount= Pcount;
+        content memory Content = content(pcount,_name, _Link, _description);
         publicLib.push(Content);
-        emit PublicUpload(_name, _Link, _description);
+        emit PublicUpload(pcount,_name, _Link, _description);
          return ("Added to Public Library");
     }
 
 
-    /*
-    *@notice shares item in library
+    /**
+    @notice shares item in library
+    @param _to recieve addresses
+    @param _ID of file
     */
     function share(address[] memory _to, uint256 _ID) public returns(string memory)
     {
@@ -69,7 +81,7 @@ contract smartLibrary
         for(uint256 i=0; i<_to.length; i++) {
         require(_to[i] != address(0),"you cant share to zero address");
         
-        userLib[_to[i]][_ID] = content(c.name, c.Link, c.description);
+        userLib[_to[i]][_ID] = content(c.ID, c.name, c.Link, c.description);
         }
         return "shared";
 
@@ -82,11 +94,16 @@ contract smartLibrary
     function viewPrivateLib() public view returns(content[] memory )
     {
         return privlib[msg.sender];
-    // for(uint i=0; i<privlib[msg.sender].length; i++ )
-    // {
-         
-        // p.push( privlib[msg.sender][i]);
-        
-   //  }
+    }
+
+    /*
+    *@notice make private item public
+    @param _ID id of item to make public
+    */
+    function makePublic(uint256 _ID)public
+    {
+        content memory c = userLib[msg.sender][_ID];
+         publicLib.push(c);
+          emit PublicUpload(c.ID, c.name, c.Link, c.description);
     }
 }

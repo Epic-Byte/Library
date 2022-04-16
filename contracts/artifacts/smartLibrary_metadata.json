@@ -9,6 +9,12 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_pcount",
+						"type": "uint256"
+					},
+					{
 						"indexed": true,
 						"internalType": "string",
 						"name": "_name",
@@ -31,6 +37,19 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "Pcount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -49,13 +68,7 @@
 					}
 				],
 				"name": "PrivateUpload",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -67,6 +80,53 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_ID",
+						"type": "uint256"
+					}
+				],
+				"name": "makePublic",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "publicLib",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "ID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "Link",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -132,6 +192,11 @@
 					{
 						"components": [
 							{
+								"internalType": "uint256",
+								"name": "ID",
+								"type": "uint256"
+							},
+							{
 								"internalType": "string",
 								"name": "name",
 								"type": "string"
@@ -158,17 +223,38 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"publicUpload(string,string,string)": {
+					"params": {
+						"_Link": "IPFS Link",
+						"_description": "file description",
+						"_name": "file name"
+					}
+				},
+				"share(address[],uint256)": {
+					"params": {
+						"_ID": "of file",
+						"_to": "recieve addresses"
+					}
+				}
+			},
 			"version": 1
 		},
 		"userdoc": {
 			"events": {
-				"PublicUpload(string,string,string)": {
+				"PublicUpload(uint256,string,string,string)": {
 					"notice": "Events to log public library"
 				}
 			},
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"publicUpload(string,string,string)": {
+					"notice": "Uploads publicly into array publicLib"
+				},
+				"share(address[],uint256)": {
+					"notice": "shares item in library"
+				}
+			},
 			"version": 1
 		}
 	},
@@ -189,11 +275,11 @@
 	},
 	"sources": {
 		"contracts/Library.sol": {
-			"keccak256": "0x18c9e1ff98cd1463209b102238b1d9dab4753c2a0c916a981a8c78e3bdcaafb5",
+			"keccak256": "0x714525539adc4d170b35730e214f4ab713c9421afb8233ae68a855eba178af79",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dae16488dc40da3fab48a445ea3ed620109d40ef2aff29b9a95e4088a063df67",
-				"dweb:/ipfs/QmQwnBawcunnMRdBmggbM7juN6Lu4ZuRi15M98ZQL6Rx4d"
+				"bzz-raw://39d02f2456c898200911822ce0f8cc5db98de3094b8a7a3527e11bb67e4570e0",
+				"dweb:/ipfs/QmPRtim83i1FaHYxZBNiRmNZLgCXjeWwJbE8ekvfWMgzn7"
 			]
 		}
 	},
